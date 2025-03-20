@@ -57,7 +57,6 @@ local function setup()
                     local total_width = vim.opt.columns:get()
 
                     local padding = (math.floor(total_width/2) - harpoon_len - mode_width - file_width)
-
                     str = string.rep(" ", padding) .. str
                     return str
                 end,

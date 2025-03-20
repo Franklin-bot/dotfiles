@@ -1,3 +1,3 @@
 ### i use neovim btw ###
 
-![image info](assets/nvim.png)
+![](https://github.com/Franklin-bot/dotfiles/tree/main/assets/nvim.png)

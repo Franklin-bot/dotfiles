@@ -4,7 +4,6 @@ local function setup()
 
     dap.adapters.codelldb = {
       type = "executable",
-      -- command = "/Users/FranklinZhao/.vscode/extensions/vadimcn.vscode-lldb-1.11.4/adapter/codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
       command = "/opt/homebrew/opt/llvm/bin/lldb-dap",
 
     }

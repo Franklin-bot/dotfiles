@@ -5,23 +5,18 @@ local function setup()
     local function generate_indicators(n, get_indicator_function)
         local indicators = {}
         for i = 1, n do
-            table.insert(indicators, function (harpoon_entry) return get_indicator_function(i, harpoon_entry) end)
+            table.insert(indicators, get_indicator_function())
         end
-
         return indicators
     end
 
     vim.cmd('highlight LualineInactiveIndicator guifg=#e4f0fb')
-    local function get_harpoon_indicator(index, harpoon_entry)
-        local path = harpoon_entry.value
-        local last_file = path:match("^.+/(.+)$") or path
+    local function get_harpoon_indicator()
         return "%#LualineInactiveIndicator#" .. "·"
     end
 
     vim.cmd('highlight LualineActiveIndicator guifg=#d0679d')
-    local function get_active_indicator(index, harpoon_entry)
-        local path = harpoon_entry.value
-        local last_file = path:match("^.+/(.+)$") or path
+    local function get_active_indicator()
         return "%#LualineActiveIndicator#" .. "×"
     end
 
@@ -49,8 +44,6 @@ local function setup()
         end
         }
 
-
-
     local hll =
         {
             "harpoon2",
@@ -59,34 +52,11 @@ local function setup()
             _separator = " ",
             no_harpoon = "Harpoon not loaded",
             fmt = function(str)
-                    local utils = require "harpoon-lualine.utils"
                     local harpoon = require("harpoon")
-
-                    local harpoon_entries = harpoon:list()
-                    local len = harpoon_entries:length()
+                    local harpoon_len = 2*harpoon:list():length()+1
                     local total_width = vim.opt.columns:get()
 
-                    local string_length = 2 * len+1
-                    local padding = (math.floor(total_width/2) - string_length - mode_width - file_width)
-
-                    -- don't remember why this is here lol
-                    -- local current_file_path = vim.api.nvim_buf_get_name(0)
-                    -- local root_dir = harpoon_entries.config:get_root_dir()
-                    -- if len > 1 then
-                    --     for i = 1, len do
-                    --         local harpoon_path = harpoon:list():get(i).value
-                    --         local full_path = nil
-                    --         if utils.is_relative_path(harpoon_path) then
-                    --             full_path = utils.get_full_path(root_dir, harpoon_path)
-                    --         else
-                    --             full_path = harpoon_path
-                    --         end
-                    --
-                    --         if full_path == current_file_path then
-                    --             break
-                    --         end
-                    --     end
-                    -- end
+                    local padding = (math.floor(total_width/2) - harpoon_len - mode_width - file_width)
 
                     str = string.rep(" ", padding) .. str
                     return str

@@ -2,7 +2,7 @@ local function setup()
     local dap = require('dap')
     local ui = require('dapui')
 
-    require("dap").set_log_level("TRACE")
+    -- require("dap").set_log_level("TRACE")
 
     dap.adapters.lldb = {
       type = "executable",
@@ -50,7 +50,7 @@ local function setup()
 
 
 
-    vim.keymap.set("n", "<leader>d", dap.continue)
+    vim.keymap.set("n", "<leader>dj", dap.continue)
     vim.keymap.set("n", "<F2>", dap.step_into)
     vim.keymap.set("n", "<F3>", dap.step_over)
     vim.keymap.set("n", "<F4>", dap.step_out)

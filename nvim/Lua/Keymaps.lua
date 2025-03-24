@@ -19,8 +19,8 @@ vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>p", "\"+p")
 vim.keymap.set("n", "<leader>p", "\"+p")
 
-vim.keymap.set("n", "<leader>k", "<C-u>")
-vim.keymap.set("n", "<leader>j", "<C-d>")
+-- vim.keymap.set("n", "<leader>k", "<C-u>")
+-- vim.keymap.set("n", "<leader>j", "<C-d>")
 
 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)

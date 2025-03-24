@@ -3,8 +3,8 @@ local function setup()
     neoscroll.setup()
 
     local keymap = {
-        ['<leader>j'] = function () neoscroll.ctrl_d({duration = 100, }) end;
-        ['<leader>k'] = function () neoscroll.ctrl_u({duration = 100, }) end;
+        ['<space>j'] = function () neoscroll.scroll(10, {duration = 50, }) end;
+        ['<space>k'] = function () neoscroll.scroll(-10, {duration = 50, }) end;
     }
 
     local modes = { 'n', 'v', 'x' }

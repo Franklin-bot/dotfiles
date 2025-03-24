@@ -8,6 +8,7 @@ local function setup()
             defaults = {
                 mappings = {
                     i = {
+
                         ["<C-k>"] = actions.move_selection_previous,
                         ["<C-j>"] = actions.move_selection_next,
                     },
@@ -24,7 +25,6 @@ local function setup()
     vim.keymap.set('n', '<leader>ps', function()
     builtin.grep_string({ search = vim.fn.input("Grep > ")});
     end)
-
     telescope.load_extension('dap')
     vim.keymap.set('n', '<leader>df', function()
         telescope.extensions.dap.frames()

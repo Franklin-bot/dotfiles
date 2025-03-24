@@ -14,7 +14,6 @@ local function setup()
 
 end
 
-
 local M = {
   "karb94/neoscroll.nvim",
   config = setup

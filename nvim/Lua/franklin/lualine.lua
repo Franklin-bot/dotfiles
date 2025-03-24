@@ -1,6 +1,9 @@
 local function setup()
 
     local entries = 8
+    local inactive_icon = "·"
+    local active_icon = "×"
+    -- local active_icon = "🍆"
 
     local function generate_indicators(n, get_indicator_function)
         local indicators = {}
@@ -11,14 +14,7 @@ local function setup()
     end
 
     vim.cmd('highlight LualineInactiveIndicator guifg=#e4f0fb')
-    local function get_harpoon_indicator()
-        return "%#LualineInactiveIndicator#" .. "·"
-    end
-
     vim.cmd('highlight LualineActiveIndicator guifg=#d0679d')
-    local function get_active_indicator()
-        return "%#LualineActiveIndicator#" .. "×"
-    end
 
     -- elements
     local mode_width = 0
@@ -47,8 +43,8 @@ local function setup()
     local hll =
         {
             "harpoon2",
-            indicators = generate_indicators(entries, get_harpoon_indicator),
-            active_indicators = generate_indicators(entries, get_active_indicator),
+            indicators = generate_indicators(entries, function() return "%#LualineInactiveIndicator#" .. inactive_icon end ),
+            active_indicators = generate_indicators(entries, function () return "%#LualineActiveIndicator#" .. active_icon end ),
             _separator = " ",
             no_harpoon = "Harpoon not loaded",
             fmt = function(str)

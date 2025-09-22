@@ -2,7 +2,7 @@ local function setup()
 
     local lspconfig = require "lspconfig"
     local cmp = require "cmp"
-    local servers = {"lua_ls", "clangd", "pyright", "gopls"}
+    local servers = {"lua_ls", "clangd", "pyright", "rust_analyzer", "gopls"}
 
     require("mason").setup()
     require("mason-lspconfig").setup {
@@ -16,8 +16,10 @@ local function setup()
                 client.server_capabilities.semanticTokensProvider = nil
             end
         })
-
     end
+    lspconfig.clangd.setup({
+      cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose', },
+    })
 
     -- configure autocomplete
     cmp.setup({

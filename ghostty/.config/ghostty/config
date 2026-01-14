@@ -2,7 +2,7 @@ font-size = 16
 theme = Rose Pine
 cursor-style = block
 macos-icon = holographic
-scrollback-limit = 10000
+scrollback-limit = 1000000
 
 shell-integration-features = ssh-terminfo
 shell-integration-features = ssh-env

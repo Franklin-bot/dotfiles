@@ -2,7 +2,7 @@ local function setup()
 
     local lspconfig = require "lspconfig"
     local cmp = require "cmp"
-    local servers = {"lua_ls", "clangd", "pyright", "rust_analyzer", "gopls"}
+    local servers = {"lua_ls", "clangd", "pyright", "rust_analyzer", "gopls", "vtsls"}
 
     require("mason").setup()
     require("mason-lspconfig").setup {

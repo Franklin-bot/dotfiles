@@ -1,24 +1,28 @@
 local function setup()
-  local lspconfig = require "lspconfig"
   local cmp = require "cmp"
   local servers = { "lua_ls", "clangd", "pyright", "rust_analyzer", "gopls", "vtsls" }
 
   require("mason").setup()
   require("mason-lspconfig").setup {
-    ensure_installed = servers
+    ensure_installed = servers,
+    automatic_enable = false,
   }
 
   -- configure servers
   for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup({
+    local config = {
       on_attach = function(client, bufr)
         client.server_capabilities.semanticTokensProvider = nil
-      end
-    })
+      end,
+    }
+
+    if lsp == "clangd" then
+      config.cmd = { "clangd", "--background-index", "--clang-tidy", "--log=verbose" }
+    end
+
+    vim.lsp.config(lsp, config)
+    vim.lsp.enable(lsp)
   end
-  lspconfig.clangd.setup({
-    cmd = { 'clangd', '--background-index', '--clang-tidy', '--log=verbose', },
-  })
 
   -- configure autocomplete
   cmp.setup({
